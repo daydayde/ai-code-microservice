@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: ai-code-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db04
+    username: root
+    password: 1234
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      ttl: 3600
+      database: 0
+      password:
+  session:
+    store-type: redis
+    timeout: 259200
+server:
+  port: 8081 # 端口号
+  servlet:
+    context-path: /api # 后端访问的前缀
+    session:
+      cookie:
+        max-age: 259200
+# springdoc-openai后端调试工具(knife4j)
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.bobby.aicodeuser.controller
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

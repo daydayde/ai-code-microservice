@@ -1,0 +1,95 @@
+spring:
+  application:
+    name: ai-code-app
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db04
+    username: root
+    password: 1234
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      ttl: 3600
+      database: 0
+      password:
+  session:
+    store-type: redis
+    timeout: 259200
+
+
+server:
+  port: 8082 # 端口号
+  servlet:
+    context-path: /api # 后端访问的前缀
+    session:
+      cookie:
+        max-age: 259200
+
+# springdoc-openai后端调试工具(knife4j)
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.bobby.aicodeapp.controller
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+langchain4j:
+  community:
+    dashscope:
+      streaming-chat-model:
+        api-key: ${DASHSCOPE_API_KEY}
+        model-name: MiniMax-M2.1
+        temperature: 0.1
+        parameters:
+          enable-thinking: true
+      chat-model:
+        api-key: ${DASHSCOPE_API_KEY}
+        model-name: MiniMax-M2.1
+        parameters:
+          response-format: json
+          enable-thinking: true
+
+# AI 模型配置
+# 推理 AI 模型配置（用于复杂的推理任务）
+reasoning-streaming-chat-model:
+  api-key: ${DASHSCOPE_API_KEY}
+  model-name: MiniMax-M2.1
+  max-tokens: 32768
+  temperature: 0.1
+  log-requests: true
+  log-responses: true
+# 智能路由 AI 模型配置（用于简单的分类任务）
+routing-chat-model:
+  api-key: ${DASHSCOPE_API_KEY}
+  model-name: MiniMax-M2.1
+  log-requests: true
+  log-responses: true
+
+
+dashscope:
+  api-key: ${DASHSCOPE_API_KEY}
+  image-model: qwen-image-max
+
+pexels:
+  api-key: ${PEXELS_API_KEY}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+
