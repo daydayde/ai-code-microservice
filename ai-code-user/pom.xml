@@ -18,6 +18,15 @@
     </properties>
 
     <dependencies>
+        <!-- Dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-nacos-spring-boot-starter</artifactId>
+        </dependency>
         <!-- Spring Session + Redis -->
         <dependency>
             <groupId>org.springframework.session</groupId>
@@ -57,6 +66,11 @@
         <dependency>
             <groupId>com.bobby</groupId>
             <artifactId>ai-code-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bobby</groupId>
+            <artifactId>ai-code-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
